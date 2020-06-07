@@ -5,6 +5,7 @@
         public const string CONTEXT_SUFFIX = "Context";
         public const string ENTITY_SUFFIX = "Entity";
         public const string COMPONENT_SUFFIX = "Component";
+        public const string MESSAGE_SUFFIX = "Message";
         public const string SYSTEM_SUFFIX = "System";
         public const string MATCHER_SUFFIX = "Matcher";
         public const string LISTENER_SUFFIX = "Listener";
@@ -45,6 +46,18 @@
             return hasSuffix(str, COMPONENT_SUFFIX);
         }
 
+        public static string AddMessageSuffix(this string str) {
+            return addSuffix(str, MESSAGE_SUFFIX);
+        }
+
+        public static string RemoveMessageSuffix(this string str) {
+            return removeSuffix(str, MESSAGE_SUFFIX);
+        }
+
+        public static bool HasMesssageSuffix(this string str) {
+            return hasSuffix(str, MESSAGE_SUFFIX);
+        }
+        
         public static string AddSystemSuffix(this string str) {
             return addSuffix(str, SYSTEM_SUFFIX);
         }

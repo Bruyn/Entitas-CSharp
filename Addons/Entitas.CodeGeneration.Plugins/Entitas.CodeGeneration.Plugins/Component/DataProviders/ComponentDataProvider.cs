@@ -87,7 +87,7 @@ namespace Entitas.CodeGeneration.Plugins {
                 .ToArray();
 
             var dataFromNonComponents = types
-                .Where(type => !type.ImplementsInterface<IComponent>())
+                .Where(type => !type.ImplementsInterface<IComponent>() && !type.ImplementsInterface<IMessage>())
                 .Where(type => !type.IsGenericType)
                 .Where(hasContexts)
                 .SelectMany(createDataForNonComponent)

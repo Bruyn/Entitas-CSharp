@@ -4,7 +4,7 @@ namespace Entitas {
 
     public delegate void ContextEntityChanged(IContext context, IEntity entity);
     public delegate void ContextGroupChanged(IContext context, IGroup group);
-
+    
     public interface IContext {
 
         event ContextEntityChanged OnEntityCreated;
@@ -13,6 +13,8 @@ namespace Entitas {
 
         event ContextGroupChanged OnGroupCreated;
 
+        event EntityMessageSend OnMessageSend;
+        
         int totalComponents { get; }
 
         Stack<IComponent>[] componentPools { get; }

@@ -91,6 +91,14 @@
     <Compile Include="Entitas.CodeGeneration.Plugins\Events\CodeGenerators\EventSystemGenerator.cs" />
     <Compile Include="Entitas.CodeGeneration.Plugins\Events\CodeGenerators\EventSystemsGenerator.cs" />
     <Compile Include="Entitas.CodeGeneration.Plugins\Events\EventData.cs" />
+    <Compile Include="Entitas.CodeGeneration.Plugins\Message\CodeGenerators\MessageEntityApiGenerator.cs" />
+    <Compile Include="Entitas.CodeGeneration.Plugins\Message\CodeGenerators\MessageLookupGenerator.cs" />
+    <Compile Include="Entitas.CodeGeneration.Plugins\Message\DataProviders\MessageDataProvider.cs" />
+    <Compile Include="Entitas.CodeGeneration.Plugins\Message\DataProviders\MessageDataProviders\MemberDataMessageDataProvider.cs" />
+    <Compile Include="Entitas.CodeGeneration.Plugins\Message\DataProviders\MessageDataProviders\MessageTypeComponentDataProvider.cs" />
+    <Compile Include="Entitas.CodeGeneration.Plugins\Message\DataProviders\MessageDataProviders\ContextsMessageDataProvider.cs" />
+    <Compile Include="Entitas.CodeGeneration.Plugins\Message\DataProviders\MessageDataProviders\IMessageDataProvider.cs" />
+    <Compile Include="Entitas.CodeGeneration.Plugins\Message\MessageData.cs" />
     <Compile Include="Entitas.CodeGeneration.Plugins\PluginUtil.cs" />
   </ItemGroup>
   <ItemGroup>

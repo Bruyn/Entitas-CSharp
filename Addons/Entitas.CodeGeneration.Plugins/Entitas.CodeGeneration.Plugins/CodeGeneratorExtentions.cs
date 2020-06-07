@@ -8,6 +8,7 @@ namespace Entitas.CodeGeneration.Plugins {
     public static class CodeGeneratorExtentions {
 
         public const string LOOKUP = "ComponentsLookup";
+        public const string LOOKUP_MESSAGE = "MessagesLookup";
 
         const string KEYWORD_PREFIX = "@";
 
@@ -19,6 +20,10 @@ namespace Entitas.CodeGeneration.Plugins {
             return data.GetTypeName().ToComponentName(ignoreNamespaces);
         }
 
+        public static string MessageName(this MessageData data) {
+            return data.GetTypeName().ToMessageName(ignoreNamespaces);
+        }
+        
         public static string ComponentNameValidLowercaseFirst(this ComponentData data) {
             return ComponentName(data).LowercaseFirst().AddPrefixIfIsKeyword();
         }
@@ -27,6 +32,10 @@ namespace Entitas.CodeGeneration.Plugins {
             return contextName + data.ComponentName();
         }
 
+        public static string MessageNameWithContext(this MessageData data, string contextName) {
+            return contextName + data.MessageName();
+        }
+        
         public static string Replace(this string template, string contextName) {
             return template
                 .Replace("${ContextName}", contextName)
@@ -37,6 +46,22 @@ namespace Entitas.CodeGeneration.Plugins {
                 .Replace("${Lookup}", contextName + LOOKUP);
         }
 
+        public static string Replace(this string template, MessageData data, string contextName) {
+            return template
+                .Replace(contextName)
+                .Replace("${MessageType}", data.GetTypeName())
+                .Replace("${MessageName}", data.MessageName())
+                .Replace("${messageName}", data.MessageName().LowercaseFirst())
+                // .Replace("${validComponentName}", data.ComponentNameValidLowercaseFirst())
+                // .Replace("${prefixedComponentName}", data.PrefixedComponentName())
+                .Replace("${newMethodParameters}", GetMethodParameters(data.GetMemberData(), true))
+                // .Replace("${methodParameters}", GetMethodParameters(data.GetMemberData(), false))
+                // .Replace("${newMethodArgs}", GetMethodArgs(data.GetMemberData(), true))
+                // .Replace("${methodArgs}", GetMethodArgs(data.GetMemberData(), false))
+                .Replace("${Index}", contextName + LOOKUP_MESSAGE + "." + data.MessageName());
+
+        }
+        
         public static string Replace(this string template, ComponentData data, string contextName) {
             return template
                 .Replace(contextName)

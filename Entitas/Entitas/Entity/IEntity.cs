@@ -10,9 +10,13 @@ namespace Entitas {
     public delegate void EntityComponentReplaced(
         IEntity entity, int index, IComponent previousComponent, IComponent newComponent
     );
-
+    
     public delegate void EntityEvent(IEntity entity);
 
+    public delegate void EntityMessageSend(
+        IEntity entity, int index, IMessage message
+    );
+    
     public interface IEntity : IAERC {
 
         event EntityComponentChanged OnComponentAdded;
@@ -20,7 +24,8 @@ namespace Entitas {
         event EntityComponentReplaced OnComponentReplaced;
         event EntityEvent OnEntityReleased;
         event EntityEvent OnDestroyEntity;
-
+        event EntityMessageSend OnMessageSend;
+        
         int totalComponents { get; }
         int creationIndex { get; }
         bool isEnabled { get; }

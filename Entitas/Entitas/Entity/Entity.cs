@@ -7,7 +7,8 @@ namespace Entitas {
     /// Use context.CreateEntity() to create a new entity and
     /// entity.Destroy() to destroy it.
     /// You can add, replace and remove IComponent to an entity.
-    public class Entity : IEntity {
+    public class Entity : IEntity
+    {
 
         /// Occurs when a component gets added.
         /// All event handlers will be removed when
@@ -34,16 +35,27 @@ namespace Entitas {
         /// the entity gets destroyed by the context.
         public event EntityEvent OnDestroyEntity;
 
+        public event EntityMessageSend OnMessageSend;
+        
         /// The total amount of components an entity can possibly have.
-        public int totalComponents { get { return _totalComponents; } }
+        public int totalComponents
+        {
+            get { return _totalComponents; }
+        }
 
         /// Each entity has its own unique creationIndex which will be set by
         /// the context when you create the entity.
-        public int creationIndex { get { return _creationIndex; } }
+        public int creationIndex
+        {
+            get { return _creationIndex; }
+        }
 
         /// The context manages the state of an entity.
         /// Active entities are enabled, destroyed entities are not.
-        public bool isEnabled { get { return _isEnabled; } }
+        public bool isEnabled
+        {
+            get { return _isEnabled; }
+        }
 
         /// componentPools is set by the context which created the entity and
         /// is used to reuse removed components.
@@ -52,18 +64,27 @@ namespace Entitas {
         /// reusable component from the componentPool.
         /// Use entity.GetComponentPool(index) to get a componentPool for
         /// a specific component index.
-        public Stack<IComponent>[] componentPools { get { return _componentPools; } }
+        public Stack<IComponent>[] componentPools
+        {
+            get { return _componentPools; }
+        }
 
         /// The contextInfo is set by the context which created the entity and
         /// contains information about the context.
         /// It's used to provide better error messages.
-        public ContextInfo contextInfo { get { return _contextInfo; } }
+        public ContextInfo contextInfo
+        {
+            get { return _contextInfo; }
+        }
 
         /// Automatic Entity Reference Counting (AERC)
         /// is used internally to prevent pooling retained entities.
         /// If you use retain manually you also have to
         /// release it manually at some point.
-        public IAERC aerc { get { return _aerc; } }
+        public IAERC aerc
+        {
+            get { return _aerc; }
+        }
 
         readonly List<IComponent> _componentBuffer;
         readonly List<int> _indexBuffer;
@@ -82,12 +103,15 @@ namespace Entitas {
         string _toStringCache;
         StringBuilder _toStringBuilder;
 
-        public Entity() {
+        public Entity()
+        {
             _componentBuffer = new List<IComponent>();
             _indexBuffer = new List<int>();
         }
 
-        public void Initialize(int creationIndex, int totalComponents, Stack<IComponent>[] componentPools, ContextInfo contextInfo = null, IAERC aerc = null) {
+        public void Initialize(int creationIndex, int totalComponents, Stack<IComponent>[] componentPools,
+            ContextInfo contextInfo = null, IAERC aerc = null)
+        {
             Reactivate(creationIndex);
 
             _totalComponents = totalComponents;
@@ -98,21 +122,32 @@ namespace Entitas {
             _aerc = aerc ?? new SafeAERC(this);
         }
 
-        ContextInfo createDefaultContextInfo() {
+        ContextInfo createDefaultContextInfo()
+        {
             var componentNames = new string[totalComponents];
-            for (int i = 0; i < componentNames.Length; i++) {
+            for (int i = 0; i < componentNames.Length; i++)
+            {
                 componentNames[i] = i.ToString();
             }
 
             return new ContextInfo("No Context", componentNames, null);
         }
 
-        public void Reactivate(int creationIndex) {
+        public void Reactivate(int creationIndex)
+        {
             _creationIndex = creationIndex;
             _isEnabled = true;
         }
 
-        /// Adds a component at the specified index.
+        public void SendMessage(int index, IMessage message)
+        {
+            if (OnMessageSend != null) {
+                OnMessageSend(this, index, message);
+            }
+        }
+        
+
+    /// Adds a component at the specified index.
         /// You can only have one component at an index.
         /// Each component type must have its own constant index.
         /// The prefered way is to use the
@@ -398,6 +433,7 @@ namespace Entitas {
             OnComponentReplaced = null;
             OnComponentRemoved = null;
             OnDestroyEntity = null;
+            OnMessageSend = null;
         }
 
         // Do not call this method manually. This method is called by the context.

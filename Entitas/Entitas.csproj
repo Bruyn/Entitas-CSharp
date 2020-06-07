@@ -36,6 +36,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entitas\IMessage.cs" />
     <Compile Include="Entitas\Matcher\Matcher.cs" />
     <Compile Include="Entitas\Matcher\MatcherToString.cs" />
     <Compile Include="Entitas\Matcher\MatcherEquals.cs" />
@@ -46,7 +47,9 @@
     <Compile Include="Entitas\Entity\Entity.cs" />
     <Compile Include="Entitas\Group\Group.cs" />
     <Compile Include="Entitas\Context\Context.cs" />
+    <Compile Include="Entitas\Systems\Interfaces\IMessageSystem.cs" />
     <Compile Include="Entitas\Systems\JobSystem.cs" />
+    <Compile Include="Entitas\Systems\MessageSystem.cs" />
     <Compile Include="Entitas\Systems\Systems.cs" />
     <Compile Include="Entitas\Systems\ReactiveSystem.cs" />
     <Compile Include="Entitas\Group\GroupEvent.cs" />
