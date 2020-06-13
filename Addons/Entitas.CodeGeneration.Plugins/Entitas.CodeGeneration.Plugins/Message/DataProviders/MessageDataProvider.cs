@@ -41,6 +41,7 @@ namespace Entitas.CodeGeneration.Plugins
                 new ContextsMessageDataProvider(),
                 new MessageTypeMessageDataProvider(),
                 new MemberDataMessageDataProvider(),
+                new SyncMessageDataProvider(),
             };
         }
 

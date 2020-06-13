@@ -98,6 +98,7 @@
     <Compile Include="Entitas.CodeGeneration.Plugins\Message\DataProviders\MessageDataProviders\MessageTypeComponentDataProvider.cs" />
     <Compile Include="Entitas.CodeGeneration.Plugins\Message\DataProviders\MessageDataProviders\ContextsMessageDataProvider.cs" />
     <Compile Include="Entitas.CodeGeneration.Plugins\Message\DataProviders\MessageDataProviders\IMessageDataProvider.cs" />
+    <Compile Include="Entitas.CodeGeneration.Plugins\Message\DataProviders\MessageDataProviders\SyncMessageDataProvider.cs" />
     <Compile Include="Entitas.CodeGeneration.Plugins\Message\MessageData.cs" />
     <Compile Include="Entitas.CodeGeneration.Plugins\PluginUtil.cs" />
   </ItemGroup>

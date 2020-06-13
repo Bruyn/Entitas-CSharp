@@ -44,6 +44,7 @@
     <Compile Include="Entitas.CodeGeneration.Attributes\EntityIndex\PrimaryEntityIndexAttribute.cs" />
     <Compile Include="Entitas.CodeGeneration.Attributes\EventAttribute.cs" />
     <Compile Include="Entitas.CodeGeneration.Attributes\PostConstructorAttribute.cs" />
+    <Compile Include="Entitas.CodeGeneration.Attributes\SyncAttribute.cs" />
     <Compile Include="Entitas.CodeGeneration.Attributes\UniqueAttribute.cs" />
     <Compile Include="Entitas.CodeGeneration.Attributes\FlagPrefixAttribute.cs" />
   </ItemGroup>
